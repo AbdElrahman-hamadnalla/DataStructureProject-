@@ -1,0 +1,131 @@
+package test;
+/*         not used         */
+// import java.awt.Color;
+// import java.awt.Graphics;
+
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+// import java.awt.Font;
+
+public class MyNodeTree extends JPanel {
+    private Node root;
+    private int treeElement;
+
+    public MyTree() {
+        super();
+        treeElement = 0;
+
+    }
+
+    public void add(String element) {
+        if (treeElement < 31) {
+            if (root == null) {
+
+                root = new Node(element);
+            } else {
+                root.add(element);
+
+            }
+            treeElement++;
+            System.out.println(treeElement);
+            // repaint();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "The tree is full",
+                    "Error",
+                    JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+
+    public void remove(String element) {
+
+        root = removeRec(root, element);
+
+    }
+
+    Node removeRec(Node root, String element) {
+        // Return if the tree is empty
+        if (root == null)
+            return root;
+
+        // Find the node to be removed
+        if (element.compareTo(root.data) < 0)
+            root.left = removeRec(root.left, element);
+        else if (element.compareTo(root.data) > 0)
+            root.right = removeRec(root.right, element);
+        else {
+            // If the node is with only one child or no child
+            if (root.left == null)
+                return root.right;
+            else if (root.right == null)
+                return root.left;
+
+            // If the node has two children
+            // Place the inorder successor in position of the node to be removed
+            root.data = minValue(root.right);
+
+            // remove the inorder successor
+            root.right = removeRec(root.right, root.data);
+        }
+
+        return root;
+    }
+
+    // Find the inorder successor
+    String minValue(Node root) {
+
+        String minv = root.data;
+        while (root.left != null) {
+            minv = root.left.data;
+            root = root.left;
+        }
+        return minv;
+    }
+
+}
+
+class Node {
+
+    public String data;
+    public Node left;
+    public Node right;
+
+    public Node(String data, Node left, Node right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+
+    }
+
+    public Node(String data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+
+    }
+
+    static int countNumNodes(Node root) {
+        if (root == null)
+            return (0);
+        return (1 + countNumNodes(root.left) + countNumNodes(root.right));
+    }
+
+    public void add(String element) {
+
+        if (this.left == null) {
+
+            this.left = new Node(element, null, null);
+        } else if (this.right == null) {
+
+            this.right = new Node(element, null, null);
+        } else if (countNumNodes(this.left) > countNumNodes(this.right)) {
+            this.right.add(element);
+
+        } else {
+            this.left.add(element);
+
+        }
+
+    }
+
+}
