@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "DataStructureSmulation",
+            "request": "launch",
+            "mainClass": "DataStructureSmulation",
+            "projectName": "DataStructureProject_ba1e87e2"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
