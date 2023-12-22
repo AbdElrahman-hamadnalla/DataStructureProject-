@@ -25,9 +25,17 @@ public class DataStructureSmulation {
 
                 // input stack size
                 String firstNumber = JOptionPane.showInputDialog("Enter the size of the stack");
-                int number1 = Integer.parseInt(firstNumber);// todo handling exception
-
-                Stack stack = new Stack(number1);
+                int number1 = 0;
+                Stack stack = null;
+                try {
+                    number1 = Integer.parseInt(firstNumber);// // todo handling exception
+                    stack = new Stack(number1);
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null, "Please enter a number.",
+                            "Error",
+                            JOptionPane.PLAIN_MESSAGE);
+                    continue;
+                }
                 stack.setBackground(Color.WHITE);
 
                 frame.add(stack);
@@ -77,9 +85,17 @@ public class DataStructureSmulation {
 
                 // input Queue size
                 String firstNumber = JOptionPane.showInputDialog("Enter the size of the queue");
-                int number1 = Integer.parseInt(firstNumber);// todo handling exception
-
-                Queuew queue = new Queuew(number1);
+                int number1 = 0;
+                Queuew queue = null;
+                try {
+                    number1 = Integer.parseInt(firstNumber);// // todo handling exception
+                    queue = new Queuew(number1);
+                } catch (NumberFormatException n) {
+                    JOptionPane.showMessageDialog(null, "Please enter a number.",
+                            "Error",
+                            JOptionPane.PLAIN_MESSAGE);
+                    continue;
+                }
                 queue.setBackground(Color.WHITE);
                 frame.add(queue);
                 frame.setSize(270, 500);
@@ -213,13 +229,32 @@ public class DataStructureSmulation {
                     // * detect the action (pop or push or exit)
 
                     if (word.toLowerCase().equals("remove") || input.toLowerCase().equals("remove")) {
-                        int number1 = Integer.parseInt(rest);// todo handling exception
-                        root.remove(number1);
+                        try {
+                            int number1 = Integer.parseInt(rest);// // todo handling exception
+                            root.remove(number1);
+                        }
+
+                        catch (NumberFormatException n) {
+                            JOptionPane.showMessageDialog(null, "Please enter a number.",
+                                    "Error",
+                                    JOptionPane.PLAIN_MESSAGE);
+                            continue;
+
+                        }
 
                     } else if (word.toLowerCase().equals("add")) {
-                        int number1 = Integer.parseInt(rest);// todo handling exception
+                        try {
+                            int number1 = Integer.parseInt(rest);// // todo handling exception
+                            root.add(number1);
+                        }
 
-                        root.add(number1);
+                        catch (NumberFormatException n) {
+                            JOptionPane.showMessageDialog(null, "Please enter a number.",
+                                    "Error",
+                                    JOptionPane.PLAIN_MESSAGE);
+                            continue;
+
+                        }
 
                     } else if (input.toLowerCase().equals("exit")) {
                         break;
