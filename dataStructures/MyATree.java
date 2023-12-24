@@ -128,7 +128,7 @@ public class MyATree extends JPanel {
                 else if (i != 0)
                     g.drawLine(x + 33, y, (int) ((((double) (j)) + 0.5) * (1350 / (((double) first) + 1))), y - 34);
 
-                g.drawString("" + root[i] + "", x + 2, y + 40);
+                g.drawString("" + root[treeElement - i - 1] + "", x + 2, y + 40);
 
                 i++;
                 j++;
